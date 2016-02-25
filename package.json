@@ -1,0 +1,17 @@
+{
+  "name": "pc-require",
+  "version": "0.0.1",
+  "description": "js module loader for browser with fis3/pcat/fis3-postpackager-autocombo",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "loader"
+  ],
+  "author": "JinC",
+  "license": "MIT"
+}
