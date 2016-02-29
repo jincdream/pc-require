@@ -261,6 +261,7 @@
       _self._bind = _bind || null
       return _self
     }
+    
     _promise.prototype.wrap = function(fn){
       var _self = this
       if(!fn && !_self.main)return;
@@ -296,14 +297,22 @@
     // var Promise = win.Promise || _promise
     var Promise = _promise
     // (new _promise(function(resolve){setTimeout(function(){resolve(111)},500);console.log(222)})).then(function(data){console.log(data)})
-    var async = function(names,option){
+    var async = function(names,option,callback){
+      if(({}).toString.call(option) === '[object function]'.toLowerCase()){
+        callback = option
+        option = {}
+        return require(names,callback,option.charset,option.noCombo)
+      }
+      if(({}).toString.call(callback) === '[object function]'.toLowerCase()){
+        return require(namse,callback,option.charset,option.noCombo)
+      }
       var option = option || {};
       return new Promise(function(resolve,reject){
         if('' + names === names)names = [names];
         require(names,function(){
           var args = [].slice.call(arguments,0)
           resolve.call(null,args)
-        },option.charset,option.combo)
+        },option.charset,option.noCombo)
       }) 
     }
     _require.async = async
