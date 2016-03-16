@@ -5,7 +5,7 @@ Package Control Messages
 
 #API
 
-##@define('name',function(require,exports,module){})
+##define('name',function(require,exports,module){})
 
 ###说明
 定义模块，`define('模块名',function 模块函数(require,exports,module){})`。
@@ -14,28 +14,28 @@ Package Control Messages
 - 模块函数里的`exports`、`module`跟`Node.js`的用法和概念是一样的。
 
 ###例子
-```js
+```javascript
 define('a',function(require,exports,module){
   a.name = 'a'
 })
 ```
 
-##@require('name')
+##require('name')
 
 ###说明
 加载同步模块，针对已经被`define`的模块才能进行`require`调用
 
 
 ###例子
-```js
+```javascript
 var a = require('a')
 console.log(a.name)
 ```
-##@require.config(config)
+##require.config(config)
 
 ###说明
 异步模块配置接口。
-```js
+```javascript
 {
   domain: 'http://www.pc.com',
   path: {
@@ -51,7 +51,7 @@ console.log(a.name)
 }
 ```
 
-##require.async
+##require.async(['a','b'])
 
 ###说明
 require.async(['模块名A','模块名B','模块名C']).then(回调函数)
@@ -65,7 +65,7 @@ require.async(['模块名A','模块名B','模块名C']).then(回调函数)
 
 ###示例
 
-```js
+```javascript
 require
   .async(['slide','a'])
   .then(function(slide,a){ //模块会变成参数注入进来。

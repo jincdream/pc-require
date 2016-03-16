@@ -1017,30 +1017,30 @@ body .markdown-body
 </style><title>README</title></head><body><article class="markdown-body"><h1 id="package-control-messages"><a name="user-content-package-control-messages" href="#package-control-messages" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Package Control Messages</h1>
 <h1 id="pc-requirejs"><a name="user-content-pc-requirejs" href="#pc-requirejs" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>pc-require.js</h1>
 <h1 id="api"><a name="user-content-api" href="#api" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>API</h1>
-<h2 id="definenamefunctionrequireexportsmodule"><a name="user-content-definenamefunctionrequireexportsmodule" href="#definenamefunctionrequireexportsmodule" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>@define(&lsquo;name&rsquo;,function(require,exports,module){})</h2>
+<h2 id="definenamefunctionrequireexportsmodule"><a name="user-content-definenamefunctionrequireexportsmodule" href="#definenamefunctionrequireexportsmodule" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>define(&lsquo;name&rsquo;,function(require,exports,module){})</h2>
 <h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>说明</h3>
 <p>定义模块，<code>define('模块名',function 模块函数(require,exports,module){})</code>。<br />
 - 模块函数只会在 require(&lsquo;模块名&rsquo;) 的时候才会被执行，且多次 require 只会执行一次。<br />
 - 模块函数里的<code>require</code>用法跟全局的<code>require</code>的用法一样，需要什么模块就 require 什么模块。<br />
 - 模块函数里的<code>exports</code>、<code>module</code>跟<code>Node.js</code>的用法和概念是一样的。</p>
 <h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>例子</h3>
-<pre><code class="js">define('a',function(require,exports,module){
+<pre><code class="javascript">define('a',function(require,exports,module){
   a.name = 'a'
 })
 </code></pre>
 
-<h2 id="requirename"><a name="user-content-requirename" href="#requirename" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>@require(&lsquo;name&rsquo;)</h2>
+<h2 id="requirename"><a name="user-content-requirename" href="#requirename" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>require(&lsquo;name&rsquo;)</h2>
 <h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>说明</h3>
 <p>加载同步模块，针对已经被<code>define</code>的模块才能进行<code>require</code>调用</p>
 <h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>例子</h3>
-<pre><code class="js">var a = require('a')
+<pre><code class="javascript">var a = require('a')
 console.log(a.name)
 </code></pre>
 
-<h2 id="requireconfigconfig"><a name="user-content-requireconfigconfig" href="#requireconfigconfig" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>@require.config(config)</h2>
+<h2 id="requireconfigconfig"><a name="user-content-requireconfigconfig" href="#requireconfigconfig" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>require.config(config)</h2>
 <h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>说明</h3>
 <p>异步模块配置接口。<br />
-<pre><code class="js">{
+<pre><code class="javascript">{
   domain: 'http://www.pc.com',
   path: {
     'jQuery': '/static/jQuery.min.js', //key =&gt; 模块名，value =&gt; 模块路径（相对于 domain 或者 相对于当前页面地址）
@@ -1054,7 +1054,7 @@ console.log(a.name)
   comboUrl: '/??' //用于连接combo和域名参数。如：/?? =&gt; http://www.pc.com/??/static/jQuery.min.js,/static/temp.min.js,/static/slide.min.js。 不适用 combo 是该参数无效。
 }
 </code></pre></p>
-<h2 id="requireasync"><a name="user-content-requireasync" href="#requireasync" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>require.async</h2>
+<h2 id="requireasyncab"><a name="user-content-requireasyncab" href="#requireasyncab" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>require.async([&lsquo;a&rsquo;,&rsquo;b&rsquo;])</h2>
 <h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>说明</h3>
 <p>require.async([&lsquo;模块名A&rsquo;,&rsquo;模块名B&rsquo;,&rsquo;模块名C&rsquo;]).then(回调函数)</p>
 <p>加载异步模块，或者直接加载<code>js</code>文件、<code>css</code>文件。<br />
@@ -1064,7 +1064,7 @@ console.log(a.name)
 - 只需要在配置里配置好依赖关系，就会自动加载这些模块所需要的所有依赖模块。<br />
 - 目前参数只支持数组。</p>
 <h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>示例</h3>
-<pre><code class="js">require
+<pre><code class="javascript">require
   .async(['slide','a'])
   .then(function(slide,a){ //模块会变成参数注入进来。
     slide.init()
