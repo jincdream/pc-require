@@ -1,6 +1,6 @@
 {
   "name": "pc-require",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "js module loader for browser with fis3/pcat/fis3-postpackager-autocombo",
   "main": "index.js",
   "directories": {

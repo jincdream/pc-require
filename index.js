@@ -19,7 +19,7 @@
      }
    })()
    var log = function(){
-     win.console && win.console.log(arguments)
+     win.console && win.console.log.apply(win.console,arguments)
    }
 
    var _SCRIPT_   = doc.createElement('script')
@@ -47,7 +47,10 @@
      },
      load: function(id,src,charset,bind){
        var _self    = this
-       var isScript = /\.js$|\.js\?.*|\.js\?/.test(src)
+       var isSource = /\.((?:css|js))$|\.((?:css|js))\?.*|\.((?:css|js))\?/.test(src)
+       if(!isSource)throw new Error('load "'+src+'" false!');
+       var _type = RegExp.$1 || RegExp.$2 || RegExp.$3 || !1
+       var isScript =  _type === 'js'
        var type     = isScript ? 'javascript' : 'css'
        var source   = doc.createElement(isScript ? 'script' : 'link')
        var index    = 0,loadID
@@ -134,7 +137,7 @@
          source.fire()
          break;
        default:
-       break;
+         break;
      }
      return id
    }
@@ -145,28 +148,28 @@
    module._short = {}
    module.w = {}
    module.config = function(config){
-     var n
-     var _short
-     var _self      = this
-     var _base      = config.domain || _self._baseUrl || ''
-     var _deps      = config.deps
-     var _combo     = config.combo
-     var _comboUrl  = config.comboUrl
-     var _path      = config.path
-     var _alies     = config.alies
-     for (n in _path) {
-       var path = _self._path[n] = _self._path[_path[n]] = {}
-       path.src = _path[n]
-       path.callback = []
-     }
-     for (_short in _alies){
-       _self._short[_short] = _alies[_short]
-     }
-     _self._baseUrl = _base
-     _deps     && (_self._deps     = _deps)
-     _combo    && (_self._combo    = _combo)
-     _comboUrl && (_self._comboUrl = _comboUrl)
+    var n
+    var _short
+    var _self      = this
+    var _base      = config.domain || _self._baseUrl || ''
+    var _deps      = config.deps
+    var _combo     = config.combo
+    var _comboUrl  = config.comboUrl
+    var _path      = config.path
+    var _alies     = config.alies
+    for (n in _path) {
+     var path = _self._path[n] = _self._path[_path[n]] = {}
+     path.src = _path[n]
+     path.callback = []
     }
+    for (_short in _alies){
+     _self._short[_short] = _alies[_short]
+    }
+    _self._baseUrl = _base
+    _deps     && (_self._deps     = _deps)
+    _combo    && (_self._combo    = _combo)
+    _comboUrl && (_self._comboUrl = _comboUrl)
+   }
     var _getDeps = function(name){
      var mDeps = module._deps || {}
      var deps = mDeps[name]
