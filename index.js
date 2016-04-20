@@ -148,6 +148,7 @@
    module._short = {}
    module.w = {}
    module.config = function(config){
+    if(!config)return;
     var n
     var _short
     var _self      = this
@@ -343,4 +344,4 @@
     exports.define = define
     exports.require = _require
      // exports. = module
- })(window,document)
+ })(window,document);require.config(window.__REQUIRE_CONFIG__);
