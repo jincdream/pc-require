@@ -250,6 +250,7 @@
     }
     var _require = function(name){
      var mod = module.mods[name]
+     if(!mod)throw new Error(name + 'is not exist.');
      mod.factory && mod.factory()
      return mod.exports
     }
