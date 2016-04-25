@@ -242,7 +242,7 @@
          }
        })
        log(baseUrl)
-       console.log(baseUrl,(baseUrl + _self._comboUrl || '')+combo.join(','))
+       // console.log(baseUrl,(baseUrl + _self._comboUrl || '')+combo.join(','))
        combo.length ? loadSource((baseUrl + _self._comboUrl || '')+combo.join(','),callback,charset || doc.charset,combo.join(',')) : callback()
        comboCss.length && loadSource((baseUrl + _self._comboUrl || '')+combo.join(','),function(){log('css loaded')},charset || doc.charset,combo.join(','))
      }
